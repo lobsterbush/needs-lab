@@ -5,20 +5,20 @@
    ======================================== */
 
 :root {
-    --bg-primary: #faf9f7;
-    --bg-secondary: #f3f1ed;
+    --bg-primary: #f9f9fb;
+    --bg-secondary: #f1f2f5;
     --bg-card: #ffffff;
 
     --text-primary: #111118;
     --text-secondary: #4a4a5a;
     --text-muted: #6b6b7e;
 
-    --accent: #b45309;
-    --accent-hover: #92400e;
-    --accent-light: #d97706;
-    --accent-subtle: rgba(180, 83, 9, 0.10);
+    --accent: #c2410c;
+    --accent-hover: #9a3412;
+    --accent-light: #ea580c;
+    --accent-subtle: rgba(194, 65, 12, 0.08);
 
-    --border: #e2e0db;
+    --border: #e2e3e8;
     --shadow: rgba(17, 17, 24, 0.08);
 
     --font-serif: 'IBM Plex Serif', Georgia, serif;
@@ -47,18 +47,18 @@ body {
     overflow-x: hidden;
 }
 
-/* Animated mesh gradient background — warm version of personal site */
+/* Animated mesh gradient background */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background:
-        radial-gradient(ellipse 80% 60% at 10% 15%, rgba(180, 83, 9, 0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(217, 119, 6, 0.05) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 70% at 55% 85%, rgba(180, 83, 9, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 30% 55%, rgba(217, 119, 6, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 50% at 80% 45%, rgba(180, 83, 9, 0.05) 0%, transparent 55%),
-        linear-gradient(135deg, #faf9f7 0%, #f5f0ea 25%, #f3efe8 50%, #f5f0ea 75%, #faf9f7 100%);
+        radial-gradient(ellipse 80% 60% at 10% 15%, rgba(194, 65, 12, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 90% 10%, rgba(234, 88, 12, 0.04) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 70% at 55% 85%, rgba(194, 65, 12, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 30% 55%, rgba(234, 88, 12, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 80% 45%, rgba(194, 65, 12, 0.04) 0%, transparent 55%),
+        linear-gradient(135deg, #f9f9fb 0%, #f4f2f0 25%, #f2f0ee 50%, #f4f2f0 75%, #f9f9fb 100%);
     background-size: 200% 200%;
     animation: meshGradient 20s ease infinite;
     pointer-events: none;
@@ -70,9 +70,9 @@ body::after {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background:
-        radial-gradient(circle 700px at 15% 75%, rgba(180, 83, 9, 0.04) 0%, transparent 65%),
-        radial-gradient(circle 600px at 80% 25%, rgba(217, 119, 6, 0.06) 0%, transparent 65%),
-        radial-gradient(circle 400px at 50% 50%, rgba(180, 83, 9, 0.03) 0%, transparent 50%);
+        radial-gradient(circle 700px at 15% 75%, rgba(194, 65, 12, 0.03) 0%, transparent 65%),
+        radial-gradient(circle 600px at 80% 25%, rgba(234, 88, 12, 0.05) 0%, transparent 65%),
+        radial-gradient(circle 400px at 50% 50%, rgba(194, 65, 12, 0.02) 0%, transparent 50%);
     background-size: 150% 150%;
     animation: meshGradient2 28s ease infinite;
     pointer-events: none;
@@ -106,7 +106,7 @@ img { max-width: 100%; height: auto; }
 .nav {
     position: fixed; top: 0; left: 0; right: 0;
     height: var(--nav-height);
-    background: rgba(250, 249, 247, 0.80);
+    background: rgba(249, 249, 251, 0.80);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -139,7 +139,7 @@ img { max-width: 100%; height: auto; }
     padding: 0.45rem 0.7rem; border-radius: 6px;
     transition: all var(--transition-smooth);
 }
-.nav-link:hover { background: var(--accent); color: white !important; text-decoration: none; }
+.nav-link:hover { background: var(--accent); color: white !important; text-decoration: none; transform: translateY(0); }
 .nav-link.active { background: var(--accent); color: white !important; }
 
 .nav-toggle {
@@ -242,7 +242,7 @@ em { color: var(--text-primary); }
 }
 
 .hero-link:hover {
-    border-color: rgba(180, 83, 9, 0.3); background: rgba(255, 255, 255, 0.70);
+    border-color: rgba(194, 65, 12, 0.3); background: rgba(255, 255, 255, 0.70);
     color: var(--accent); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
     transform: translateY(-2px); text-decoration: none;
 }
@@ -291,7 +291,7 @@ em { color: var(--text-primary); }
     border-radius: 10px;
 }
 .card:hover {
-    border-color: rgba(180, 83, 9, 0.3);
+    border-color: rgba(194, 65, 12, 0.25);
     background: rgba(255, 255, 255, 0.70);
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
 }
@@ -414,8 +414,8 @@ em { color: var(--text-primary); }
 .table-search:focus { outline: none; border-color: var(--accent); }
 
 .caveats {
-    background: linear-gradient(135deg, rgba(180, 83, 9, 0.06) 0%, rgba(180, 83, 9, 0.02) 100%);
-    border: 1px solid rgba(180, 83, 9, 0.15);
+    background: linear-gradient(135deg, rgba(194, 65, 12, 0.05) 0%, rgba(194, 65, 12, 0.02) 100%);
+    border: 1px solid rgba(194, 65, 12, 0.12);
     border-left: 3px solid var(--accent);
     padding: 1.25rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.5rem 0;
 }
