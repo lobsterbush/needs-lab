@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Trackers — Fundamental Needs Lab</title>
+    <meta name="description" content="Interactive global data trackers for Gini coefficients, food insecurity, and homelessness.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav"><div class="nav-inner">
+        <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="people.html" class="nav-link">People</a>
+            <a href="research.html" class="nav-link">Research</a>
+            <a href="publications.html" class="nav-link">Publications</a>
+            <a href="advocacy.html" class="nav-link">Advocacy</a>
+            <a href="data.html" class="nav-link">Data</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div></nav>
+    <div class="mobile-menu" aria-hidden="true">
+        <a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data</a>
+    </div>
+
+    <main class="container">
+        <div class="section">
+            <h1 class="section-title">Global Data Trackers</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Interactive visualizations tracking fundamental needs indicators across countries. These trackers draw on open data from the World Bank, FAO, and OECD to provide a window into global inequality, food insecurity, and homelessness.</p>
+
+            <div class="tracker-tabs" role="tablist">
+                <button class="tracker-tab active" role="tab" aria-selected="true" data-tab="gini">Gini Coefficient</button>
+                <button class="tracker-tab" role="tab" aria-selected="false" data-tab="food">Food Insecurity</button>
+                <button class="tracker-tab" role="tab" aria-selected="false" data-tab="homeless">Homelessness</button>
+            </div>
+
+            <!-- Gini Panel -->
+            <div class="tracker-panel active" id="panel-gini" role="tabpanel">
+                <p class="tracker-explainer">The Gini coefficient measures income or consumption inequality within a country, ranging from 0 (perfect equality) to 100 (perfect inequality). The World Bank classifies countries with a Gini above 40 as high inequality.</p>
+
+                <div class="year-slider-wrap">
+                    <label for="gini-year">Year:</label>
+                    <input type="range" id="gini-year" min="2000" max="2023" value="2020" step="1">
+                    <span class="year-value" id="gini-year-label">2020</span>
+                </div>
+
+                <div id="gini-map" class="map-container"></div>
+
+                <input type="text" class="table-search" id="gini-search" placeholder="Search countries…" aria-label="Search Gini data">
+                <div class="data-table-wrap">
+                    <table class="data-table" id="gini-table">
+                        <thead><tr>
+                            <th data-sort="country">Country <span class="sort-arrow"></span></th>
+                            <th data-sort="value">Gini Index <span class="sort-arrow"></span></th>
+                            <th data-sort="year">Year <span class="sort-arrow"></span></th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="caveats">
+                    <h4>Methodology &amp; Caveats</h4>
+                    <ul>
+                        <li>The Gini index measures income or consumption inequality only — it does not capture wealth inequality, access to services, or other dimensions of wellbeing.</li>
+                        <li>Coverage is uneven: some countries have annual data, others have multi-year gaps. The map shows the most recent available value for the selected year or earlier.</li>
+                        <li>Some countries measure income, others measure consumption, which affects comparability.</li>
+                    </ul>
+                </div>
+                <p class="data-source">Source: <a href="https://data.worldbank.org/indicator/SI.POV.GINI" target="_blank">World Bank — Gini Index (SI.POV.GINI)</a></p>
+            </div>
+
+            <!-- Food Insecurity Panel -->
+            <div class="tracker-panel" id="panel-food" role="tabpanel">
+                <p class="tracker-explainer">The prevalence of moderate or severe food insecurity measures the share of a country's population that has experienced food insecurity, as assessed using the Food Insecurity Experience Scale (FIES). This includes people who have reduced the quality or quantity of food they eat, or gone without food entirely.</p>
+
+                <div class="year-slider-wrap">
+                    <label for="food-year">Year:</label>
+                    <input type="range" id="food-year" min="2015" max="2022" value="2022" step="1">
+                    <span class="year-value" id="food-year-label">2022</span>
+                </div>
+
+                <div id="food-map" class="map-container"></div>
+
+                <input type="text" class="table-search" id="food-search" placeholder="Search countries…" aria-label="Search food insecurity data">
+                <div class="data-table-wrap">
+                    <table class="data-table" id="food-table">
+                        <thead><tr>
+                            <th data-sort="country">Country <span class="sort-arrow"></span></th>
+                            <th data-sort="value">Food Insecurity (%) <span class="sort-arrow"></span></th>
+                            <th data-sort="year">Year <span class="sort-arrow"></span></th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="caveats">
+                    <h4>Methodology &amp; Caveats</h4>
+                    <ul>
+                        <li>FIES-based estimates rely on survey self-reports and may not capture all dimensions of food insecurity (e.g., micronutrient deficiency).</li>
+                        <li>Data coverage begins around 2015 and is not available for all countries in all years.</li>
+                        <li>Moderate food insecurity means uncertainty about the ability to obtain food; severe means going without food for a day or more.</li>
+                    </ul>
+                </div>
+                <p class="data-source">Source: <a href="https://data.worldbank.org/indicator/SN.ITK.MSFI.ZS" target="_blank">World Bank / FAO — Prevalence of moderate or severe food insecurity (SN.ITK.MSFI.ZS)</a></p>
+            </div>
+
+            <!-- Homelessness Panel -->
+            <div class="tracker-panel" id="panel-homeless" role="tabpanel">
+                <p class="tracker-explainer">Homelessness data is among the hardest to collect and compare across countries. There is no internationally agreed definition of homelessness, and countries differ widely in what they count. The data below covers approximately 40 mostly OECD countries — a small fraction of the world.</p>
+
+                <div id="homeless-bars" class="bar-chart">
+                    <div class="loading">Loading homelessness data…</div>
+                </div>
+
+                <input type="text" class="table-search" id="homeless-search" placeholder="Search countries…" aria-label="Search homelessness data">
+                <div class="data-table-wrap">
+                    <table class="data-table" id="homeless-table">
+                        <thead><tr>
+                            <th data-sort="country">Country <span class="sort-arrow"></span></th>
+                            <th data-sort="value">Per 100,000 <span class="sort-arrow"></span></th>
+                            <th data-sort="year">Year <span class="sort-arrow"></span></th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="caveats">
+                    <h4>Methodology &amp; Caveats — Please Read</h4>
+                    <ul>
+                        <li><strong>No internationally agreed definition of homelessness exists.</strong> Countries define and count their homeless populations differently.</li>
+                        <li>This data covers only ~40 mostly wealthy nations (OECD + some EU members). Billions of people live in countries with no official homelessness statistics.</li>
+                        <li>Definitions vary widely: Japan counts only people sleeping on streets, while New Zealand includes people in inadequate housing. France includes those in temporary accommodation.</li>
+                        <li>"Hidden homelessness" — people staying with friends/family, in cars, or in other precarious situations — is generally not captured.</li>
+                        <li>Data are collected using different methods: some countries do single-night counts, others track flows over a year.</li>
+                    </ul>
+                    <p>For more information, see the <a href="https://www.oecd.org/en/topics/sub-issues/affordable-housing/homelessness.html" target="_blank">OECD's ETHOS Light framework</a> and <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data's homelessness page</a>.</p>
+                </div>
+                <p class="data-source">Source: <a href="https://www.oecd.org/housing/data/affordable-housing-database/" target="_blank">OECD Affordable Housing Database (HC3.1)</a>, compiled via <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="footer-inner">
+        <span>&copy; 2025 Fundamental Needs Lab</span>
+        <span>PI: <a href="https://charlescrabtree.org">Charles Crabtree</a> · <a href="https://www.monash.edu/">Monash University</a></span>
+    </div></footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script src="data.js"></script>
+</body>
+</html>

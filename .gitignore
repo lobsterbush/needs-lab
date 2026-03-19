@@ -1,0 +1,5 @@
+.DS_Store
+notion-export/
+__pycache__/
+*.pyc
+.env
