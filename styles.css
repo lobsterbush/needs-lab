@@ -120,7 +120,7 @@ img { max-width: 100%; height: auto; }
 
 .editorial-headline {
     font-family: var(--font-serif);
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -927,6 +927,39 @@ img { max-width: 100%; height: auto; }
     color: var(--accent);
     min-width: 3rem;
     text-align: center;
+}
+
+/* Collapsible data table */
+.table-collapse { display: none; }
+.table-collapse.open { display: block; }
+.table-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+.table-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(27, 54, 93, 0.04);
+}
+.table-toggle .toggle-arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.5rem;
+}
+.table-toggle.open .toggle-arrow {
+    transform: rotate(180deg);
 }
 
 .data-table-wrap { overflow-x: auto; margin-bottom: 2rem; }

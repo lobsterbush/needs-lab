@@ -1,12 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-  <!-- Outer shelter: clean roof arc -->
-  <path d="M24 4L4 22h6v18h28V22h6L24 4z" fill="currentColor" opacity="0.08"/>
-  <!-- Inner cutout: negative-space person silhouette -->
-  <path d="M24 4L6 20.5h5V40h26V20.5h5L24 4z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-  <!-- Person: head -->
-  <circle cx="24" cy="23" r="3.2" fill="currentColor"/>
-  <!-- Person: body/arms reaching up -->
-  <path d="M24 26.5v7.5M20.5 30l3.5-2.5 3.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Subtle foundation line -->
-  <line x1="14" y1="40" x2="34" y2="40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <!-- Shelter: single clean stroke path, rounded -->
+  <path d="M5 19L20 5l15 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 18v16h22V18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Person: single dot, centered -->
+  <circle cx="20" cy="26" r="3" fill="currentColor"/>
 </svg>

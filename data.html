@@ -17,7 +17,7 @@
     <div class="grain-overlay" aria-hidden="true"></div>
 
     <nav class="nav nav--solid"><div class="nav-inner">
-        <a href="index.html" class="nav-logo"><svg class="nav-logo-mark" width="26" height="26" viewBox="0 0 48 48" fill="none"><path d="M24 4L6 20.5h5V40h26V20.5h5L24 4z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/><circle cx="24" cy="23" r="3.2" fill="currentColor"/><path d="M24 26.5v7.5M20.5 30l3.5-2.5 3.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="14" y1="40" x2="34" y2="40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg> Fundamental Needs Lab</a>
+        <a href="index.html" class="nav-logo"><svg class="nav-logo-mark" width="24" height="24" viewBox="0 0 40 40" fill="none"><path d="M5 19L20 5l15 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 18v16h22V18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="26" r="3" fill="currentColor"/></svg> Fundamental Needs Lab</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="people.html" class="nav-link">People</a>
@@ -67,6 +67,8 @@
 
                 <div id="gini-map" class="map-container"></div>
 
+                <button class="table-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Show Data Table <span class="toggle-arrow">▼</span></button>
+            <div class="table-collapse">
                 <input type="text" class="table-search" id="gini-search" placeholder="Search countries…" aria-label="Search Gini data">
                 <div class="data-table-wrap">
                     <table class="data-table" id="gini-table">
@@ -78,6 +80,7 @@
                         <tbody></tbody>
                     </table>
                 </div>
+            </div>
 
                 <div class="caveats">
                     <h4>Methodology &amp; Caveats</h4>
@@ -102,6 +105,8 @@
 
                 <div id="food-map" class="map-container"></div>
 
+                <button class="table-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Show Data Table <span class="toggle-arrow">▼</span></button>
+            <div class="table-collapse">
                 <input type="text" class="table-search" id="food-search" placeholder="Search countries…" aria-label="Search food insecurity data">
                 <div class="data-table-wrap">
                     <table class="data-table" id="food-table">
@@ -113,6 +118,7 @@
                         <tbody></tbody>
                     </table>
                 </div>
+            </div>
 
                 <div class="caveats">
                     <h4>Methodology &amp; Caveats</h4>
@@ -152,6 +158,8 @@
 
                 <div id="global-homeless-bars" class="bar-chart"></div>
 
+                <button class="table-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Show Data Table <span class="toggle-arrow">▼</span></button>
+            <div class="table-collapse">
                 <input type="text" class="table-search" id="global-homeless-search" placeholder="Search countries…" aria-label="Search global homelessness data">
                 <div class="data-table-wrap">
                     <table class="data-table" id="global-homeless-table">
@@ -163,6 +171,7 @@
                         <tbody></tbody>
                     </table>
                 </div>
+            </div>
 
                 <hr class="editorial-rule" style="margin: 3rem 0;">
 
@@ -174,6 +183,8 @@
                     <div class="loading">Loading homelessness data…</div>
                 </div>
 
+                <button class="table-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Show Data Table <span class="toggle-arrow">▼</span></button>
+            <div class="table-collapse">
                 <input type="text" class="table-search" id="homeless-search" placeholder="Search countries…" aria-label="Search homelessness data">
                 <div class="data-table-wrap">
                     <table class="data-table" id="homeless-table">
@@ -185,6 +196,7 @@
                         <tbody></tbody>
                     </table>
                 </div>
+            </div>
 
                 <div class="caveats">
                     <h4>Methodology &amp; Caveats — Please Read</h4>
