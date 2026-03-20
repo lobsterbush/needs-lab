@@ -103,18 +103,26 @@
 
     /* ===== Create Leaflet map ===== */
     function createMap(containerId) {
+        const southWest = L.latLng(-60, -180);
+        const northEast = L.latLng(85, 180);
+        const bounds = L.latLngBounds(southWest, northEast);
+
         const map = L.map(containerId, {
-            center: [20, 0],
+            center: [25, 10],
             zoom: 2,
-            minZoom: 1,
+            minZoom: 2,
             maxZoom: 6,
             scrollWheelZoom: true,
-            worldCopyJump: true
+            worldCopyJump: false,
+            maxBounds: bounds,
+            maxBoundsViscosity: 1.0
         });
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
             subdomains: 'abcd',
-            maxZoom: 19
+            maxZoom: 19,
+            noWrap: true,
+            bounds: bounds
         }).addTo(map);
         return map;
     }
