@@ -132,30 +132,24 @@
         const bounds = L.latLngBounds(southWest, northEast);
 
         const el = document.getElementById(containerId);
-        if (el) el.innerHTML = ''; /* Clear loading text before init */
+        if (el) el.innerHTML = '';
 
         const map = L.map(containerId, {
             center: [20, 15],
             zoom: 2,
             minZoom: 2,
             maxZoom: 6,
-            scrollWheelZoom: false, /* Prevent accidental scroll-zoom */
+            scrollWheelZoom: false,
             worldCopyJump: false,
             maxBounds: bounds,
             maxBoundsViscosity: 1.0,
             zoomControl: true,
-            attributionControl: true
+            attributionControl: false /* No tile layer = no attribution needed */
         });
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 19,
-            noWrap: true,
-            bounds: bounds
-        }).addTo(map);
+        /* No tile layer — plain background. The choropleth IS the map.
+           This eliminates the stripe artifacts from tile/GeoJSON misalignment. */
 
-        /* Aggressively fix map sizing */
         requestAnimationFrame(() => map.invalidateSize());
         [100, 300, 600, 1000].forEach(d => setTimeout(() => map.invalidateSize(), d));
 
@@ -180,11 +174,11 @@
                 const iso = feature.properties.ISO_A3 || N2A[feature.id] || feature.id;
                 const d = lookup[iso];
                 return {
-                    fillColor: d ? colorFn(d.value) : '#e2e3e8',
-                    weight: 0.5,
+                    fillColor: d ? colorFn(d.value) : '#e8e4de',
+                    weight: 0.8,
                     opacity: 1,
-                    color: '#ccc',
-                    fillOpacity: 0.8
+                    color: '#fff',
+                    fillOpacity: 0.9
                 };
             },
             onEachFeature: (feature, layer) => {

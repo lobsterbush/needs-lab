@@ -905,7 +905,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px;
     border: none;
     margin-bottom: 2rem;
-    background: var(--cream);
+    background: #dce7f0; /* Ocean/empty area color */
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(13, 17, 23, 0.08), 0 1px 4px rgba(13, 17, 23, 0.04);
 }
