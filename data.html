@@ -125,7 +125,48 @@
 
             <!-- Homelessness Panel -->
             <div class="tracker-panel" id="panel-homeless" role="tabpanel">
-                <p class="tracker-explainer">Homelessness data is among the hardest to collect and compare across countries. There is no internationally agreed definition of homelessness, and countries differ widely in what they count. The data below covers approximately 40 mostly OECD countries — a small fraction of the world.</p>
+
+                <!-- Global Context -->
+                <div class="stats-banner fade-in" style="margin-bottom: 3rem; background: var(--ink); padding: 3rem; border-radius: 2px;">
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: clamp(2rem, 5vw, 3.5rem);">330M</div>
+                        <div class="stat-label">People face absolute<br>homelessness worldwide</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: clamp(2rem, 5vw, 3.5rem);">1.6B</div>
+                        <div class="stat-label">Live in inadequate<br>housing globally</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" style="font-size: clamp(2rem, 5vw, 3.5rem);">78</div>
+                        <div class="stat-label">Of 195 countries report<br>official data</div>
+                    </div>
+                </div>
+
+                <p class="tracker-explainer">Homelessness data is among the hardest to collect and compare across countries. There is no internationally agreed definition of homelessness, and countries differ widely in what they count. The Institute of Global Homelessness estimates that at least 330 million people face absolute homelessness — lacking any type of shelter. UN-Habitat reports that 1.6 to 2.8 billion people worldwide lack adequate housing.</p>
+
+                <!-- Global Estimates -->
+                <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 1.5rem;">Global Estimates (Absolute Homeless Populations)</p>
+                <p class="tracker-explainer" style="margin-bottom: 1rem;">These estimates draw on a variety of sources including UN agencies, national censuses, and research organizations. Numbers include internally displaced persons in conflict zones. All figures are approximate and likely undercounts.</p>
+
+                <div id="global-homeless-bars" class="bar-chart"></div>
+
+                <input type="text" class="table-search" id="global-homeless-search" placeholder="Search countries…" aria-label="Search global homelessness data">
+                <div class="data-table-wrap">
+                    <table class="data-table" id="global-homeless-table">
+                        <thead><tr>
+                            <th data-sort="country">Country <span class="sort-arrow"></span></th>
+                            <th data-sort="value">Per 10,000 <span class="sort-arrow"></span></th>
+                            <th data-sort="year">Year <span class="sort-arrow"></span></th>
+                        </tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <hr class="editorial-rule" style="margin: 3rem 0;">
+
+                <!-- OECD Data -->
+                <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 1.5rem;">OECD Countries (Per 100,000 Population)</p>
+                <p class="tracker-explainer" style="margin-bottom: 1rem;">The data below covers approximately 40 mostly OECD countries. These numbers appear dramatically lower than the global estimates above because they use narrow national definitions and only cover wealthy nations.</p>
 
                 <div id="homeless-bars" class="bar-chart">
                     <div class="loading">Loading homelessness data…</div>
@@ -147,14 +188,14 @@
                     <h4>Methodology &amp; Caveats — Please Read</h4>
                     <ul>
                         <li><strong>No internationally agreed definition of homelessness exists.</strong> Countries define and count their homeless populations differently.</li>
-                        <li>This data covers only ~40 mostly wealthy nations (OECD + some EU members). Billions of people live in countries with no official homelessness statistics.</li>
+                        <li>The OECD data covers only ~40 mostly wealthy nations. Billions of people live in countries with no official homelessness statistics.</li>
                         <li>Definitions vary widely: Japan counts only people sleeping on streets, while New Zealand includes people in inadequate housing. France includes those in temporary accommodation.</li>
                         <li>"Hidden homelessness" — people staying with friends/family, in cars, or in other precarious situations — is generally not captured.</li>
                         <li>Data are collected using different methods: some countries do single-night counts, others track flows over a year.</li>
+                        <li>Global estimates include internally displaced persons (IDPs) in conflict zones (Syria, Ukraine, Yemen, Sudan, etc.), which dramatically increases numbers.</li>
                     </ul>
-                    <p>For more information, see the <a href="https://www.oecd.org/en/topics/sub-issues/affordable-housing/homelessness.html" target="_blank">OECD's ETHOS Light framework</a> and <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data's homelessness page</a>.</p>
                 </div>
-                <p class="data-source">Source: <a href="https://www.oecd.org/housing/data/affordable-housing-database/" target="_blank">OECD Affordable Housing Database (HC3.1)</a>, compiled via <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data</a></p>
+                <p class="data-source">Sources: <a href="https://www.oecd.org/housing/data/affordable-housing-database/" target="_blank">OECD Affordable Housing Database (HC3.1)</a> · <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data</a> · <a href="https://worldpopulationreview.com/country-rankings/homelessness-by-country" target="_blank">World Population Review</a> · <a href="https://ighomelessness.org" target="_blank">Institute of Global Homelessness</a> · UN-Habitat · UNHCR · IDMC</p>
             </div>
         </div>
     </section>

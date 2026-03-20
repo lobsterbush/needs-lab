@@ -65,6 +65,23 @@
     });
 
     /* ========================================
+       Hero parallax on scroll
+       ======================================== */
+    const heroDark = document.querySelector('.hero-dark');
+    const heroContent = heroDark ? heroDark.querySelector('.mc-container') : null;
+    if (heroDark && heroContent) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroH = heroDark.offsetHeight;
+            if (scrollY < heroH) {
+                const progress = scrollY / heroH;
+                heroContent.style.opacity = 1 - progress * 1.2;
+                heroContent.style.transform = `scale(${1 - progress * 0.05}) translateY(${scrollY * 0.15}px)`;
+            }
+        }, { passive: true });
+    }
+
+    /* ========================================
        Scroll-triggered fade-in animations
        ======================================== */
     const fadeElements = document.querySelectorAll('.fade-in');

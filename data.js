@@ -29,11 +29,13 @@
             const panel = document.getElementById('panel-' + tab.dataset.tab);
             panel.classList.add('active');
 
-            /* Invalidate map sizes on tab switch */
-            setTimeout(() => {
-                if (tab.dataset.tab === 'gini' && state.gini.map) state.gini.map.invalidateSize();
-                if (tab.dataset.tab === 'food' && state.food.map) state.food.map.invalidateSize();
-            }, 100);
+            /* Invalidate map sizes on tab switch — multiple delays for reliability */
+            [50, 150, 300, 500].forEach(delay => {
+                setTimeout(() => {
+                    if (tab.dataset.tab === 'gini' && state.gini.map) state.gini.map.invalidateSize();
+                    if (tab.dataset.tab === 'food' && state.food.map) state.food.map.invalidateSize();
+                }, delay);
+            });
         });
     });
 
@@ -224,6 +226,14 @@
         showMapStatus('gini-map', 'Loading map data…');
         showMapStatus('food-map', 'Loading map data…');
 
+        /* Ensure initial map gets sized correctly after DOM paints */
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                if (state.gini.map) state.gini.map.invalidateSize();
+                if (state.food.map) state.food.map.invalidateSize();
+            }, 200);
+        });
+
         /* Load TopoJSON and convert to GeoJSON */
         try {
             const geoRes = await fetch(GEOJSON_URL);
@@ -297,11 +307,34 @@
         if (homelessBarsEl) {
             try {
                 const res = await fetch('data/homelessness.json');
-                state.homeless.raw = await res.json();
+                const homelessData = await res.json();
+                state.homeless.raw = homelessData.oecd_per_100k || [];
+                state.homeless.global = homelessData.global_estimates || [];
+                /* Render OECD data (bar chart + table) */
                 renderBars('homeless-bars', state.homeless.raw);
                 renderTable('homeless-table', [...state.homeless.raw].sort((a, b) => b.value - a.value), 'homeless-search');
+                /* Render global estimates table */
+                const globalEl = document.getElementById('global-homeless-bars');
+                if (globalEl && state.homeless.global.length) {
+                    const globalForBars = state.homeless.global.map(d => ({
+                        country: d.country,
+                        value: d.per_10k,
+                        year: d.year
+                    }));
+                    renderBars('global-homeless-bars', globalForBars);
+                    const globalForTable = state.homeless.global.map(d => ({
+                        country: d.country,
+                        value: (d.homeless_population / 1000000).toFixed(1) + 'M',
+                        year: d.year
+                    }));
+                    renderTable('global-homeless-table', state.homeless.global.map(d => ({
+                        country: d.country,
+                        value: d.per_10k,
+                        year: d.year
+                    })).sort((a, b) => b.value - a.value), 'global-homeless-search');
+                }
             } catch (e) {
-                homelessBarsEl.innerHTML = '<p style="color:var(--text-muted);">Could not load homelessness data.</p>';
+                homelessBarsEl.innerHTML = '<p style="color:var(--warm-gray-light);">Could not load homelessness data.</p>';
                 console.error('Homelessness data error:', e);
             }
         }
