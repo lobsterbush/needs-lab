@@ -1001,34 +1001,110 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ========================================
-   Scroll Animations
+   Scroll Progress Bar
+   ======================================== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--terracotta);
+    z-index: 10001;
+    width: 0%;
+    transition: none;
+}
+
+/* ========================================
+   Scroll Animations — Spring Physics
    ======================================== */
 .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.fade-in-d1 { transition-delay: 0.1s; }
-.fade-in-d2 { transition-delay: 0.2s; }
-.fade-in-d3 { transition-delay: 0.3s; }
-.fade-in-d4 { transition-delay: 0.4s; }
+.fade-in-d1 { transition-delay: 0.08s; }
+.fade-in-d2 { transition-delay: 0.16s; }
+.fade-in-d3 { transition-delay: 0.24s; }
+.fade-in-d4 { transition-delay: 0.32s; }
 
 /* ========================================
-   Responsive
+   Bouncy Buttons
    ======================================== */
+.btn-primary, .btn-outline-light, .btn-dark {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(196, 93, 62, 0.3);
+}
+.btn-outline-light:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+.btn-dark:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+.btn-primary:active, .btn-outline-light:active, .btn-dark:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+}
+
 /* ========================================
-   Custom Cursor (interactive elements)
+   Interactive Card Tilt (JS-driven)
    ======================================== */
-@media (hover: hover) {
-    .person-card, .btn-primary, .btn-outline-light, .btn-dark, .hero-cta-group a {
-        cursor: pointer;
-    }
+.person-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* ========================================
+   Word Reveal Animation
+   ======================================== */
+.word-reveal .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.word-reveal.visible .word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Stat Counter Animation
+   ======================================== */
+.stat-number {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stat-item:hover .stat-number {
+    transform: scale(1.08);
+}
+
+/* ========================================
+   Nav Link Hover — Bouncy
+   ======================================== */
+.nav-link {
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav--solid .nav-link:hover {
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   Footer Link Hover
+   ======================================== */
+.footer-links a {
+    transition: color 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.footer-links a:hover {
+    transform: translateX(4px);
 }
 
 /* ========================================

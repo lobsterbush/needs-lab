@@ -1,6 +1,20 @@
-/* Fundamental Needs Lab — site interactions */
+/* Fundamental Needs Lab — interactive, experiential site */
 (function () {
     'use strict';
+
+    const isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ========================================
+       Scroll Progress Bar
+       ======================================== */
+    const progressBar = document.querySelector('.scroll-progress');
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+        }, { passive: true });
+    }
 
     /* ========================================
        Scroll-aware navigation
@@ -23,7 +37,6 @@
             nav.classList.add('nav--solid');
         }
     }
-
     updateNav();
     window.addEventListener('scroll', updateNav, { passive: true });
 
@@ -35,21 +48,14 @@
     const mobileClose = document.querySelector('.mobile-menu-close');
 
     if (toggle && mobileMenu) {
-        toggle.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
+        toggle.addEventListener('click', () => mobileMenu.classList.add('open'));
     }
     if (mobileClose && mobileMenu) {
-        mobileClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
+        mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
     }
-    // Close on link click
     if (mobileMenu) {
         mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
         });
     }
 
@@ -65,24 +71,54 @@
     });
 
     /* ========================================
-       Hero parallax on scroll
+       Hero — Mouse Parallax + Scroll Fade
        ======================================== */
     const heroDark = document.querySelector('.hero-dark');
-    const heroContent = heroDark ? heroDark.querySelector('.mc-container') : null;
-    if (heroDark && heroContent) {
+    const heroContainer = heroDark ? heroDark.querySelector('.mc-container') : null;
+
+    if (heroDark && heroContainer && !isMobile && !prefersReducedMotion) {
+        /* Mouse parallax — text shifts subtly with cursor */
+        let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+
+        heroDark.addEventListener('mousemove', (e) => {
+            const rect = heroDark.getBoundingClientRect();
+            mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+            mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        });
+
+        function animateHeroMouse() {
+            currentX += (mouseX - currentX) * 0.08;
+            currentY += (mouseY - currentY) * 0.08;
+
+            const megaElements = heroDark.querySelectorAll('.editorial-mega');
+            megaElements.forEach((el, i) => {
+                const depth = (i + 1) * 8;
+                el.style.transform = `translate(${currentX * depth}px, ${currentY * depth * 0.5}px)`;
+            });
+
+            const subhead = heroDark.querySelector('.editorial-subhead');
+            if (subhead) {
+                subhead.style.transform = `translate(${currentX * 4}px, ${currentY * 3}px)`;
+            }
+
+            requestAnimationFrame(animateHeroMouse);
+        }
+        animateHeroMouse();
+
+        /* Scroll fade */
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const heroH = heroDark.offsetHeight;
             if (scrollY < heroH) {
-                const progress = scrollY / heroH;
-                heroContent.style.opacity = 1 - progress * 1.2;
-                heroContent.style.transform = `scale(${1 - progress * 0.05}) translateY(${scrollY * 0.15}px)`;
+                const p = scrollY / heroH;
+                heroContainer.style.opacity = Math.max(0, 1 - p * 1.4);
+                heroContainer.style.transform = `translateY(${scrollY * 0.2}px)`;
             }
         }, { passive: true });
     }
 
     /* ========================================
-       Scroll-triggered fade-in animations
+       Scroll-triggered fade-in (spring bounce)
        ======================================== */
     const fadeElements = document.querySelectorAll('.fade-in');
     if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
@@ -95,35 +131,207 @@
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: '-40px' }
+            { threshold: 0.08, rootMargin: '-20px' }
         );
         fadeElements.forEach(el => observer.observe(el));
     } else {
-        // Fallback: show everything
         fadeElements.forEach(el => el.classList.add('visible'));
     }
+
+    /* ========================================
+       Word Reveal — staggered word-by-word
+       ======================================== */
+    document.querySelectorAll('.word-reveal').forEach(el => {
+        const text = el.textContent.trim();
+        el.innerHTML = text.split(/\s+/).map((word, i) =>
+            `<span class="word" style="transition-delay: ${i * 0.06}s">${word}</span>`
+        ).join(' ');
+    });
+
+    const wordReveals = document.querySelectorAll('.word-reveal');
+    if (wordReveals.length > 0 && 'IntersectionObserver' in window) {
+        const wordObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    wordObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        wordReveals.forEach(el => wordObs.observe(el));
+    }
+
+    /* ========================================
+       Animated Counters (stats count up)
+       ======================================== */
+    document.querySelectorAll('[data-counter]').forEach(el => {
+        const target = el.getAttribute('data-counter');
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 2000;
+
+        const counterObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    counterObs.unobserve(entry.target);
+                    animateCounter(entry.target, parseFloat(target), suffix, duration);
+                }
+            });
+        }, { threshold: 0.5 });
+        counterObs.observe(el);
+    });
+
+    function animateCounter(el, target, suffix, duration) {
+        const start = performance.now();
+        const isDecimal = target % 1 !== 0;
+
+        function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            /* Ease-out bounce */
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            if (isDecimal) {
+                el.textContent = current.toFixed(1) + suffix;
+            } else {
+                el.textContent = Math.round(current) + suffix;
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    /* ========================================
+       Card Tilt on Hover (3D perspective)
+       ======================================== */
+    if (!isMobile && !prefersReducedMotion) {
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+            let tiltX = 0, tiltY = 0, targetX = 0, targetY = 0;
+            let tiltRAF;
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                targetX = (y - 0.5) * -8;
+                targetY = (x - 0.5) * 8;
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+                function animate() {
+                    tiltX += (targetX - tiltX) * 0.1;
+                    tiltY += (targetY - tiltY) * 0.1;
+                    card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+                    tiltRAF = requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            card.addEventListener('mouseleave', () => {
+                cancelAnimationFrame(tiltRAF);
+                card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+                tiltX = 0; tiltY = 0; targetX = 0; targetY = 0;
+            });
+        });
+    }
+
+    /* ========================================
+       Magnetic Buttons (pull toward cursor)
+       ======================================== */
+    if (!isMobile && !prefersReducedMotion) {
+        document.querySelectorAll('[data-magnetic]').forEach(btn => {
+            let magX = 0, magY = 0, magRAF;
+            const strength = 0.3;
+
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                magX = x * strength;
+                magY = y * strength;
+            });
+
+            btn.addEventListener('mouseenter', () => {
+                function animate() {
+                    btn.style.transform = `translate(${magX}px, ${magY}px) scale(1.03)`;
+                    magRAF = requestAnimationFrame(animate);
+                }
+                animate();
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                cancelAnimationFrame(magRAF);
+                magX = 0; magY = 0;
+                btn.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                btn.style.transform = 'translate(0, 0) scale(1)';
+                setTimeout(() => { btn.style.transition = ''; }, 500);
+            });
+        });
+    }
+
+    /* ========================================
+       Smooth Stagger on People Grid
+       ======================================== */
+    const peopleCards = document.querySelectorAll('.people-grid .person-card');
+    if (peopleCards.length > 0 && 'IntersectionObserver' in window) {
+        const gridObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    /* Find index within grid for stagger */
+                    const cards = [...entry.target.parentElement.children];
+                    const idx = cards.indexOf(entry.target);
+                    entry.target.style.transitionDelay = (idx * 0.1) + 's';
+                    entry.target.classList.add('visible');
+                    gridObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        peopleCards.forEach(card => {
+            if (!card.classList.contains('fade-in')) {
+                card.classList.add('fade-in');
+            }
+            gridObs.observe(card);
+        });
+    }
+
+    /* ========================================
+       Research Figure Hover Zoom
+       ======================================== */
+    document.querySelectorAll('.research-figure img').forEach(img => {
+        img.addEventListener('mouseenter', () => {
+            img.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            img.style.transform = 'scale(1.02)';
+        });
+        img.addEventListener('mouseleave', () => {
+            img.style.transform = 'scale(1)';
+        });
+    });
 
     /* ========================================
        Data tracker tab switching
        ======================================== */
     const tabs = document.querySelectorAll('.tracker-tab');
     const panels = document.querySelectorAll('.tracker-panel');
-
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-tab');
-
             tabs.forEach(t => {
                 t.classList.remove('active');
                 t.setAttribute('aria-selected', 'false');
             });
             panels.forEach(p => p.classList.remove('active'));
-
             tab.classList.add('active');
             tab.setAttribute('aria-selected', 'true');
-
             const panel = document.getElementById('panel-' + target);
             if (panel) panel.classList.add('active');
         });
     });
+
 })();
