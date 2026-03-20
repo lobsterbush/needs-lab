@@ -1,10 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 32" fill="currentColor">
-  <!-- F -->
-  <rect x="2" y="2" width="4" height="28" rx="1"/>
-  <rect x="2" y="2" width="14" height="4" rx="1"/>
-  <rect x="2" y="13" width="10" height="3.5" rx="1"/>
-  <!-- N -->
-  <rect x="22" y="2" width="4" height="28" rx="1"/>
-  <rect x="34" y="2" width="4" height="28" rx="1"/>
-  <polygon points="22,2 26,2 38,26 38,30 34,30 22,6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer shelter: clean roof arc -->
+  <path d="M24 4L4 22h6v18h28V22h6L24 4z" fill="currentColor" opacity="0.08"/>
+  <!-- Inner cutout: negative-space person silhouette -->
+  <path d="M24 4L6 20.5h5V40h26V20.5h5L24 4z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+  <!-- Person: head -->
+  <circle cx="24" cy="23" r="3.2" fill="currentColor"/>
+  <!-- Person: body/arms reaching up -->
+  <path d="M24 26.5v7.5M20.5 30l3.5-2.5 3.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Subtle foundation line -->
+  <line x1="14" y1="40" x2="34" y2="40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 </svg>
