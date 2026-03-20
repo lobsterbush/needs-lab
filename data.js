@@ -169,7 +169,36 @@
             state[tracker].map.removeLayer(state[tracker].layer);
         }
 
-        state[tracker].layer = L.geoJSON(state.geoJsonData, {
+        /* Filter out non-country features (bounding boxes, antimeridian lines, etc.) */
+        const filteredGeo = {
+            type: 'FeatureCollection',
+            features: state.geoJsonData.features.filter(f => {
+                /* Must have a valid numeric or mapped ID */
+                const id = f.id || (f.properties && f.properties.ISO_A3);
+                if (!id) return false;
+                /* Skip features with ID '-99' (unmapped/disputed) unless they map to something */
+                if (id === '-99' && !N2A['-99']) return false;
+                /* Skip Antarctica (ATA / 010) */
+                if (id === '010' || id === 'ATA') return false;
+                /* Skip any feature that spans more than 160° longitude (wrapper/antimeridian artifact) */
+                if (f.bbox) {
+                    if (Math.abs(f.bbox[2] - f.bbox[0]) > 160) return false;
+                }
+                /* Also check geometry coordinates directly */
+                try {
+                    const coords = f.geometry.coordinates.flat(3);
+                    let minLon = Infinity, maxLon = -Infinity;
+                    for (let i = 0; i < coords.length; i += 2) {
+                        if (coords[i] < minLon) minLon = coords[i];
+                        if (coords[i] > maxLon) maxLon = coords[i];
+                    }
+                    if (maxLon - minLon > 300) return false; /* Wraps around the world */
+                } catch(e) {}
+                return true;
+            })
+        };
+
+        state[tracker].layer = L.geoJSON(filteredGeo, {
             style: feature => {
                 const iso = feature.properties.ISO_A3 || N2A[feature.id] || feature.id;
                 const d = lookup[iso];
