@@ -71,48 +71,18 @@
     });
 
     /* ========================================
-       Hero — Mouse Parallax + Scroll Fade
+       Hero — Scroll Fade only (no mouse parallax to avoid conflicts)
        ======================================== */
     const heroDark = document.querySelector('.hero-dark');
     const heroContainer = heroDark ? heroDark.querySelector('.mc-container') : null;
 
-    if (heroDark && heroContainer && !isMobile && !prefersReducedMotion) {
-        /* Mouse parallax — text shifts subtly with cursor */
-        let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
-
-        heroDark.addEventListener('mousemove', (e) => {
-            const rect = heroDark.getBoundingClientRect();
-            mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-            mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-        });
-
-        function animateHeroMouse() {
-            currentX += (mouseX - currentX) * 0.08;
-            currentY += (mouseY - currentY) * 0.08;
-
-            const megaElements = heroDark.querySelectorAll('.editorial-mega');
-            megaElements.forEach((el, i) => {
-                const depth = (i + 1) * 8;
-                el.style.transform = `translate(${currentX * depth}px, ${currentY * depth * 0.5}px)`;
-            });
-
-            const subhead = heroDark.querySelector('.editorial-subhead');
-            if (subhead) {
-                subhead.style.transform = `translate(${currentX * 4}px, ${currentY * 3}px)`;
-            }
-
-            requestAnimationFrame(animateHeroMouse);
-        }
-        animateHeroMouse();
-
-        /* Scroll fade */
+    if (heroDark && heroContainer && !prefersReducedMotion) {
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const heroH = heroDark.offsetHeight;
             if (scrollY < heroH) {
                 const p = scrollY / heroH;
-                heroContainer.style.opacity = Math.max(0, 1 - p * 1.4);
-                heroContainer.style.transform = `translateY(${scrollY * 0.2}px)`;
+                heroContainer.style.opacity = Math.max(0, 1 - p * 1.2);
             }
         }, { passive: true });
     }
@@ -138,28 +108,7 @@
         fadeElements.forEach(el => el.classList.add('visible'));
     }
 
-    /* ========================================
-       Word Reveal — staggered word-by-word
-       ======================================== */
-    document.querySelectorAll('.word-reveal').forEach(el => {
-        const text = el.textContent.trim();
-        el.innerHTML = text.split(/\s+/).map((word, i) =>
-            `<span class="word" style="transition-delay: ${i * 0.06}s">${word}</span>`
-        ).join(' ');
-    });
-
-    const wordReveals = document.querySelectorAll('.word-reveal');
-    if (wordReveals.length > 0 && 'IntersectionObserver' in window) {
-        const wordObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    wordObs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-        wordReveals.forEach(el => wordObs.observe(el));
-    }
+    /* Word reveal removed — was causing transform conflicts with hero parallax */
 
     /* ========================================
        Animated Counters (stats count up)
@@ -276,30 +225,7 @@
         });
     }
 
-    /* ========================================
-       Smooth Stagger on People Grid
-       ======================================== */
-    const peopleCards = document.querySelectorAll('.people-grid .person-card');
-    if (peopleCards.length > 0 && 'IntersectionObserver' in window) {
-        const gridObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    /* Find index within grid for stagger */
-                    const cards = [...entry.target.parentElement.children];
-                    const idx = cards.indexOf(entry.target);
-                    entry.target.style.transitionDelay = (idx * 0.1) + 's';
-                    entry.target.classList.add('visible');
-                    gridObs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        peopleCards.forEach(card => {
-            if (!card.classList.contains('fade-in')) {
-                card.classList.add('fade-in');
-            }
-            gridObs.observe(card);
-        });
-    }
+    /* People grid stagger handled via CSS fade-in classes */
 
     /* ========================================
        Research Figure Hover Zoom

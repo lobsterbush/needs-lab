@@ -18,7 +18,7 @@
     <div class="scroll-progress"></div>
     <div class="grain-overlay" aria-hidden="true"></div>
 
-    <nav class="nav nav--transparent">
+    <nav class="nav nav--solid">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo"><svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22 L20 6 L36 22"/><line x1="12" y1="22" x2="12" y2="34"/><line x1="28" y1="22" x2="28" y2="34"/><line x1="6" y1="34" x2="34" y2="34"/></svg> Fundamental Needs Lab</a>
             <div class="nav-links">
@@ -47,95 +47,58 @@
         <a href="data.html">Data</a>
     </div>
 
-    <!-- ========== HERO — FULL VIEWPORT DARK ========== -->
-    <section class="hero-dark">
+    <!-- ========== HERO — CENTERED LIGHT ========== -->
+    <section style="padding-top: calc(var(--nav-height) + 6rem); padding-bottom: 4rem; text-align: center;">
         <div class="mc-container">
-            <p class="editorial-label">Research Lab</p>
-            <h1>
-                <span class="editorial-mega" style="display:block;">Fundamental</span>
-                <span class="editorial-mega italic" style="display:block;">Needs Lab</span>
-            </h1>
-            <div class="hero-bottom">
-                <p class="editorial-subhead word-reveal">Deepening our understanding of social attitudes towards individuals enduring deep poverty.</p>
-                <div class="hero-cta-group">
-                    <a href="research.html" class="btn-primary" data-magnetic>Research →</a>
-                    <a href="people.html" class="btn-outline-light" data-magnetic>People</a>
+            <div class="fade-in">
+                <svg width="64" height="64" viewBox="0 0 40 40" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2.5rem; opacity: 0.4;"><path d="M4 22 L20 6 L36 22"/><line x1="12" y1="22" x2="12" y2="34"/><line x1="28" y1="22" x2="28" y2="34"/><line x1="6" y1="34" x2="34" y2="34"/></svg>
+            </div>
+            <h1 class="fade-in fade-in-d1" style="font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; color: var(--ink);">Fundamental<br>Needs Lab</h1>
+            <p class="fade-in fade-in-d2" style="font-size: 1.125rem; color: var(--warm-gray); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7;">Deepening our understanding of social attitudes towards individuals enduring deep poverty — those who lack food, shelter, and basic security.</p>
+            <div class="fade-in fade-in-d3" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
+                <a href="research.html" class="btn-primary" data-magnetic>Research</a>
+                <a href="data.html" class="btn-dark" data-magnetic>Data Trackers</a>
+                <a href="people.html" class="btn-dark" data-magnetic>People</a>
+            </div>
+            <hr class="editorial-rule fade-in fade-in-d4" style="max-width: 80px; margin: 0 auto;">
+        </div>
+    </section>
+
+    <!-- ========== STATS — INLINE LIGHT ========== -->
+    <section class="section-cream">
+        <div class="mc-container">
+            <div class="stats-banner" style="margin-bottom: 2rem;">
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-counter="330" data-suffix="M" style="color: var(--ink);">0</div>
+                    <div class="stat-label" style="color: var(--warm-gray);">Absolute homeless<br>worldwide</div>
+                </div>
+                <div class="stat-item fade-in fade-in-d1">
+                    <div class="stat-number" data-counter="1.6" data-suffix="B" style="color: var(--ink);">0</div>
+                    <div class="stat-label" style="color: var(--warm-gray);">Inadequate housing<br>globally</div>
+                </div>
+                <div class="stat-item fade-in fade-in-d2">
+                    <div class="stat-number" data-counter="78" data-suffix="" style="color: var(--ink);">0</div>
+                    <div class="stat-label" style="color: var(--warm-gray);">Of 195 countries<br>report data</div>
                 </div>
             </div>
+            <p class="fade-in fade-in-d3" style="text-align: center; color: var(--warm-gray-light); font-size: 0.7rem; font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase;">Institute of Global Homelessness · UN-Habitat · Ruff Institute</p>
         </div>
-        <div class="hero-scroll-line"></div>
     </section>
 
     <!-- ========== ABOUT ========== -->
     <section class="section-light">
-        <div class="mc-container">
-            <div class="grid-12">
-                <div class="col-4 fade-in">
-                    <p class="editorial-label" style="color: var(--accent); margin-bottom: 1rem;">About</p>
-                    <hr class="editorial-rule-accent" style="margin-bottom: 1.5rem;">
-                    <p class="editorial-caption">Bridging the gap between those with plenty and those with plenty of need.</p>
-                </div>
-                <div class="col-8">
-                    <div class="fade-in fade-in-d1">
-                        <p class="editorial-body-lg" style="margin-bottom: 2rem;">The Fundamental Needs Lab focuses on deepening our understanding of social attitudes towards individuals enduring deep poverty, particularly those who lack food and shelter, as well as the behaviors and perspectives of those experiencing it.</p>
-                    </div>
-                    <div class="fade-in fade-in-d2">
-                        <p class="editorial-body" style="margin-bottom: 2rem;">The lab is committed to bridging the gap between the views of those with plenty and those with plenty of need. It aims to do this primarily by documenting and mitigating individual biases and discrimination against the impoverished, paying attention to how poverty intersects with other identity attributes, such as race, gender identities, and disabled identities.</p>
-                    </div>
-                    <div class="fade-in fade-in-d3">
-                        <hr class="editorial-rule" style="margin: 2rem 0;">
-                    </div>
-                    <div class="fade-in fade-in-d3">
-                        <div class="contact-card">
-                            <p><strong>Principal Investigator</strong></p>
-                            <p><a href="https://charlescrabtree.org">Charles Crabtree</a></p>
-                            <p>Senior Lecturer, School of Social Sciences, Monash University and K-Club Professor, University College, Korea University.</p>
-                            <p style="margin-bottom:0;"><a href="mailto:charles.crabtree@monash.edu">charles.crabtree@monash.edu</a></p>
-                        </div>
-                    </div>
-                </div>
+        <div class="mc-narrow" style="text-align: center;">
+            <p class="editorial-label fade-in" style="color: var(--accent); margin-bottom: 1.5rem;">About the Lab</p>
+            <div class="fade-in fade-in-d1">
+                <p class="editorial-body-lg" style="margin-bottom: 2rem;">The Fundamental Needs Lab bridges the gap between those with plenty and those with plenty of need — documenting and mitigating biases against the impoverished, with attention to how poverty intersects with race, gender, and disability.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ========== THE CRISIS — STATS BANNER ========== -->
-    <section class="section-dark">
-        <div class="mc-container">
-            <div class="fade-in">
-                <p class="editorial-label" style="color: var(--accent); margin-bottom: 3rem;">The Crisis</p>
+            <div class="fade-in fade-in-d2">
+                <p class="editorial-body" style="margin-bottom: 3rem; color: var(--warm-gray);">Led by <a href="https://charlescrabtree.org">Charles Crabtree</a> (Senior Lecturer, Monash University; K-Club Professor, Korea University), the lab produces research across class-based discrimination, public opinion measurement, homelessness, and first-generation representation in the academy.</p>
             </div>
-            <div class="stats-banner">
-                <div class="stat-item fade-in">
-                    <div class="stat-number" data-counter="330" data-suffix="M">0</div>
-                    <div class="stat-label">People face absolute<br>homelessness worldwide</div>
-                </div>
-                <div class="stat-item fade-in fade-in-d1">
-                    <div class="stat-number" data-counter="1.6" data-suffix="B">0</div>
-                    <div class="stat-label">Live in inadequate<br>housing globally</div>
-                </div>
-                <div class="stat-item fade-in fade-in-d2">
-                    <div class="stat-number" data-counter="78" data-suffix="">0</div>
-                    <div class="stat-label">Of 195 countries report<br>official homelessness data</div>
-                </div>
-            </div>
-            <div class="fade-in fade-in-d3" style="text-align: center; margin-top: 3rem;">
-                <p style="color: rgba(249,249,251,0.4); font-size: 0.75rem; font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase;">Sources: Institute of Global Homelessness · UN-Habitat · Ruff Institute</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== EXPLORE — CTA ========== -->
-    <section class="section-cream">
-        <div class="mc-container">
-            <div class="fade-in">
-                <p class="editorial-label" style="color: var(--accent); margin-bottom: 2rem;">Explore</p>
-                <h2 class="editorial-display" style="color: var(--ink); margin-bottom: 2rem;">Research, data, and advocacy.</h2>
-                <p style="color: var(--warm-gray); font-size: 1.125rem; max-width: 600px; margin-bottom: 3rem;">Our work spans class-based discrimination, public opinion measurement, homelessness, and first-generation representation in the academy.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="research.html" class="btn-dark" data-magnetic>Research →</a>
-                    <a href="data.html" class="btn-dark" data-magnetic>Data Trackers</a>
-                    <a href="publications.html" class="btn-dark" data-magnetic>Publications</a>
-                </div>
+            <div class="fade-in fade-in-d3" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="research.html" class="btn-dark" data-magnetic>Research →</a>
+                <a href="publications.html" class="btn-dark" data-magnetic>Publications</a>
+                <a href="advocacy.html" class="btn-dark" data-magnetic>Advocacy</a>
             </div>
         </div>
     </section>

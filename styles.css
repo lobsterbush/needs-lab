@@ -1032,13 +1032,17 @@ img { max-width: 100%; height: auto; }
    ======================================== */
 .fade-in {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+}
+/* Fallback: show everything if JS hasn't run after 2s */
+@media (scripting: none) {
+    .fade-in { opacity: 1; transform: none; }
 }
 
 .fade-in-d1 { transition-delay: 0.08s; }
