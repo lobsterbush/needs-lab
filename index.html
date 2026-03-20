@@ -10,11 +10,13 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-    <nav class="nav">
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <nav class="nav nav--transparent">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
             <div class="nav-links">
@@ -25,12 +27,16 @@
                 <a href="advocacy.html" class="nav-link">Advocacy</a>
                 <a href="data.html" class="nav-link">Data</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
+
     <div class="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
         <a href="index.html">Home</a>
         <a href="people.html">People</a>
         <a href="research.html">Research</a>
@@ -39,37 +45,83 @@
         <a href="data.html">Data</a>
     </div>
 
-    <header class="hero">
-        <div class="container">
-            <div class="hero-badge">Research Lab</div>
-            <h1>Fundamental Needs Lab</h1>
-            <p class="lead">The Fundamental Needs Lab focuses on deepening our understanding of social attitudes towards individuals enduring deep poverty, particularly those who lack food and shelter, as well as the behaviors and perspectives of those experiencing it. The lab is committed to bridging the gap between the views of those with plenty and those with plenty of need.</p>
-            <p class="sub-lead">It aims to do this primarily by documenting and mitigating individual biases and discrimination against the impoverished, paying attention to how poverty intersects with other identity attributes, such as race, gender identities, and disabled identities.</p>
-            <div class="hero-links">
-                <a href="people.html" class="hero-link">People</a>
-                <a href="research.html" class="hero-link">Research</a>
-                <a href="publications.html" class="hero-link">Publications</a>
-                <a href="advocacy.html" class="hero-link">Advocacy</a>
-                <a href="data.html" class="hero-link">Data Trackers</a>
+    <!-- ========== HERO — FULL VIEWPORT DARK ========== -->
+    <section class="hero-dark">
+        <div class="mc-container">
+            <p class="editorial-label">Research Lab</p>
+            <h1>
+                <span class="editorial-mega" style="display:block;">Fundamental</span>
+                <span class="editorial-mega italic" style="display:block;">Needs Lab</span>
+            </h1>
+            <div class="hero-bottom">
+                <p class="editorial-subhead">Deepening our understanding of social attitudes towards individuals enduring deep poverty.</p>
+                <div class="hero-cta-group">
+                    <a href="research.html" class="btn-primary">Research →</a>
+                    <a href="people.html" class="btn-outline-light">People</a>
+                </div>
             </div>
         </div>
-    </header>
+        <div class="hero-scroll-line"></div>
+    </section>
 
-    <section class="container" style="padding-bottom:3rem;">
-        <div class="prose">
-            <div class="contact-box">
-                <p><strong>Principal Investigator:</strong> <a href="https://charlescrabtree.org">Charles Crabtree</a></p>
-                <p>Senior Lecturer, School of Social Sciences, Monash University and K-Club Professor, University College, Korea University.</p>
-                <p style="margin-bottom:0;"><a href="mailto:charles.crabtree@monash.edu">charles.crabtree@monash.edu</a></p>
+    <!-- ========== ABOUT ========== -->
+    <section class="section-light">
+        <div class="mc-container">
+            <div class="grid-12">
+                <div class="col-4 fade-in">
+                    <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 1rem;">About</p>
+                    <hr class="editorial-rule-accent" style="margin-bottom: 1.5rem;">
+                    <p class="editorial-caption">Bridging the gap between those with plenty and those with plenty of need.</p>
+                </div>
+                <div class="col-8">
+                    <div class="fade-in fade-in-d1">
+                        <p class="editorial-body-lg" style="margin-bottom: 2rem;">The Fundamental Needs Lab focuses on deepening our understanding of social attitudes towards individuals enduring deep poverty, particularly those who lack food and shelter, as well as the behaviors and perspectives of those experiencing it.</p>
+                    </div>
+                    <div class="fade-in fade-in-d2">
+                        <p class="editorial-body" style="margin-bottom: 2rem;">The lab is committed to bridging the gap between the views of those with plenty and those with plenty of need. It aims to do this primarily by documenting and mitigating individual biases and discrimination against the impoverished, paying attention to how poverty intersects with other identity attributes, such as race, gender identities, and disabled identities.</p>
+                    </div>
+                    <div class="fade-in fade-in-d3">
+                        <hr class="editorial-rule" style="margin: 2rem 0;">
+                    </div>
+                    <div class="fade-in fade-in-d3">
+                        <div class="contact-card">
+                            <p><strong>Principal Investigator</strong></p>
+                            <p><a href="https://charlescrabtree.org">Charles Crabtree</a></p>
+                            <p>Senior Lecturer, School of Social Sciences, Monash University and K-Club Professor, University College, Korea University.</p>
+                            <p style="margin-bottom:0;"><a href="mailto:charles.crabtree@monash.edu">charles.crabtree@monash.edu</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ========== EXPLORE — CTA ========== -->
+    <section class="section-dark">
+        <div class="mc-container">
+            <div class="fade-in">
+                <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 2rem;">Explore</p>
+                <h2 class="editorial-display" style="margin-bottom: 2rem;">Research, data, and advocacy.</h2>
+                <p style="color: rgba(249,249,251,0.7); font-size: 1.125rem; max-width: 600px; margin-bottom: 3rem;">Our work spans class-based discrimination, public opinion measurement, homelessness, and first-generation representation in the academy.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="research.html" class="btn-primary">Research →</a>
+                    <a href="data.html" class="btn-outline-light">Data Trackers</a>
+                    <a href="publications.html" class="btn-outline-light">Publications</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Navigation</h4>
+                <div class="footer-brand-block">
+                    <h3>Fundamental Needs Lab</h3>
+                    <p>Research on deep poverty, food insecurity, homelessness, and class-based discrimination.</p>
+                </div>
+                <div>
+                    <p class="footer-section-label">Navigate</p>
                     <div class="footer-links">
                         <a href="index.html">Home</a>
                         <a href="people.html">People</a>
@@ -79,8 +131,8 @@
                         <a href="data.html">Data Trackers</a>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
+                <div>
+                    <p class="footer-section-label">Connect</p>
                     <div class="footer-links">
                         <a href="mailto:charles.crabtree@monash.edu">Email</a>
                         <a href="https://charlescrabtree.org" target="_blank">Personal Site</a>
@@ -88,16 +140,13 @@
                     </div>
                 </div>
             </div>
+            <hr class="footer-divider">
             <div class="footer-bottom">
-                <div class="footer-brand">
-                    <span class="footer-logo">FNL</span>
-                    <span class="footer-name">Fundamental Needs Lab</span>
-                </div>
-                <span>&copy; 2025 Fundamental Needs Lab</span>
+                <p>&copy; 2025 Fundamental Needs Lab</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

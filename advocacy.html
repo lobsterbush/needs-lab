@@ -7,11 +7,13 @@
     <meta name="description" content="Advocacy efforts addressing socioeconomic inequities in higher education.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-    <nav class="nav"><div class="nav-inner">
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <nav class="nav nav--solid"><div class="nav-inner">
         <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
@@ -21,70 +23,87 @@
             <a href="advocacy.html" class="nav-link">Advocacy</a>
             <a href="data.html" class="nav-link">Data</a>
         </div>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div></nav>
     <div class="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
         <a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data</a>
     </div>
 
-    <main class="container">
-        <div class="prose">
-            <div class="section">
-                <h1 class="section-title">Advocacy</h1>
-                <p>While the lab primarily focuses on research, it also engages in some advocacy efforts. To this point, those efforts have focused on addressing socioeconomic inequities in higher education, particularly in the professoriate. Most of the people that researchers study are (relatively) poor, but study after study shows that most researchers come from (relatively) wealthy backgrounds. This imbalance leads to poorer conceptual, theoretical, and empirical work and we actively promote efforts to address it.</p>
+    <!-- Page Hero -->
+    <div class="page-hero mc-container">
+        <div class="fade-in">
+            <p class="editorial-label" style="color: var(--terracotta);">Beyond Research</p>
+            <h1 class="editorial-headline">Advocacy</h1>
+            <hr class="editorial-rule-accent">
+        </div>
+    </div>
 
-                <p>As part of these efforts, <a href="https://charlescrabtree.org">Charles Crabtree</a>, the PI of the lab, worked closely with the American Political Science Association to change how it measured first-generation status in their 2023 annual survey. Data from this new measure, which now aligns with <a href="https://www2.ed.gov/about/offices/list/ope/trio/triohea.pdf">United States government guidelines</a> and measures used by other comparable academic associations, provides the best evidence for socioeconomic representation and inequities in the discipline.</p>
-
-                <figure class="research-figure">
-                    <img src="images/advocacy-morgan.png" alt="Socioeconomic roots of academic faculty">
-                    <figcaption>Figure from Morgan et al's (2022) excellent "Socioeconomic roots of academic faculty"</figcaption>
-                </figure>
-            </div>
-
-            <div class="section">
-                <h2 class="section-subtitle">The representation gap</h2>
-                <p>If political science faculty mirrored the socioeconomic makeup of the United States, we would expect that about 80% of faculty would be the first in their family to complete a four-year degree. If political science faculty mirrored the <a href="https://ourworldindata.org/grapher/primary-secondary-enrollment-completion-rates">socioeconomic makeup of the world</a>, we would expect that about 90% of faculty would be the first in their family to complete a four-year degree. According to APSA data, only about 24% of faculty are first-generation graduates. This representation gap, a delta of 56 or 66 percentage points depending on the point of comparison, represents the largest diversity shortfall in the field.</p>
-
-                <figure class="research-figure">
-                    <img src="images/advocacy-firstgen.png" alt="First-generation representation gap in political science">
-                    <figcaption>Figure from Crabtree et al's "#firstgen in Political Science"</figcaption>
-                </figure>
-
-                <p>The lack of an adequate and representative number of firstgen faculty leads to many issues, including the <a href="https://x.com/annastansbury/status/1810766753636741140">persistent class gap that we observe in academic career outcomes</a>, the <a href="https://www.tandfonline.com/doi/full/10.1080/00380237.2024.2393243">lack of discussion about class in higher education</a>, and the <a href="https://www.amazon.com/Poor-Things-Those-Depict-without/dp/1478031026">inadequate representation of poorer folks in the scientific literature</a>.</p>
+    <!-- Advocacy Content -->
+    <section class="section-light" style="padding-top: 2rem;">
+        <div class="mc-container">
+            <div class="grid-12">
+                <!-- Sidebar -->
+                <div class="col-4 fade-in">
+                    <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 0.75rem;">The Problem</p>
+                    <hr class="editorial-rule-accent" style="margin-bottom: 1.5rem;">
+                    <p class="editorial-caption">Most researchers come from wealthy backgrounds. Most of the people they study don't. This imbalance distorts scholarship.</p>
+                </div>
+                <!-- Main -->
+                <div class="col-8 prose-content">
+                    <div class="fade-in fade-in-d1">
+                        <p>While the lab primarily focuses on research, it also engages in some advocacy efforts. To this point, those efforts have focused on addressing socioeconomic inequities in higher education, particularly in the professoriate. Most of the people that researchers study are (relatively) poor, but study after study shows that most researchers come from (relatively) wealthy backgrounds. This imbalance leads to poorer conceptual, theoretical, and empirical work and we actively promote efforts to address it.</p>
+                    </div>
+                    <div class="fade-in fade-in-d2">
+                        <p>As part of these efforts, <a href="https://charlescrabtree.org">Charles Crabtree</a>, the PI of the lab, worked closely with the American Political Science Association to change how it measured first-generation status in their 2023 annual survey. Data from this new measure, which now aligns with <a href="https://www2.ed.gov/about/offices/list/ope/trio/triohea.pdf">United States government guidelines</a> and measures used by other comparable academic associations, provides the best evidence for socioeconomic representation and inequities in the discipline.</p>
+                    </div>
+                    <div class="fade-in fade-in-d2">
+                        <figure class="research-figure">
+                            <img src="images/advocacy-morgan.png" alt="Socioeconomic roots of academic faculty">
+                            <figcaption>Figure from Morgan et al's (2022) excellent "Socioeconomic roots of academic faculty"</figcaption>
+                        </figure>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 
+    <!-- Representation Gap -->
+    <section class="section-cream">
+        <div class="mc-container">
+            <div class="grid-12">
+                <div class="col-4 fade-in">
+                    <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 0.75rem;">The Data</p>
+                    <hr class="editorial-rule-accent" style="margin-bottom: 1.5rem;">
+                    <p class="editorial-caption">The largest diversity shortfall in the field: a 56–66 percentage-point gap.</p>
+                </div>
+                <div class="col-8 prose-content">
+                    <div class="fade-in fade-in-d1">
+                        <p>If political science faculty mirrored the socioeconomic makeup of the United States, we would expect that about 80% of faculty would be the first in their family to complete a four-year degree. If political science faculty mirrored the <a href="https://ourworldindata.org/grapher/primary-secondary-enrollment-completion-rates">socioeconomic makeup of the world</a>, we would expect that about 90% of faculty would be the first in their family to complete a four-year degree. According to APSA data, only about 24% of faculty are first-generation graduates. This representation gap, a delta of 56 or 66 percentage points depending on the point of comparison, represents the largest diversity shortfall in the field.</p>
+                    </div>
+                    <div class="fade-in fade-in-d2">
+                        <figure class="research-figure">
+                            <img src="images/advocacy-firstgen.png" alt="First-generation representation gap in political science">
+                            <figcaption>Figure from Crabtree et al's "#firstgen in Political Science"</figcaption>
+                        </figure>
+                    </div>
+                    <div class="fade-in fade-in-d3">
+                        <p>The lack of an adequate and representative number of firstgen faculty leads to many issues, including the <a href="https://x.com/annastansbury/status/1810766753636741140">persistent class gap that we observe in academic career outcomes</a>, the <a href="https://www.tandfonline.com/doi/full/10.1080/00380237.2024.2393243">lack of discussion about class in higher education</a>, and the <a href="https://www.amazon.com/Poor-Things-Those-Depict-without/dp/1478031026">inadequate representation of poorer folks in the scientific literature</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer"><div class="footer-inner">
         <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="people.html">People</a>
-                    <a href="research.html">Research</a>
-                    <a href="publications.html">Publications</a>
-                    <a href="advocacy.html">Advocacy</a>
-                    <a href="data.html">Data Trackers</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="footer-links">
-                    <a href="mailto:charles.crabtree@monash.edu">Email</a>
-                    <a href="https://charlescrabtree.org" target="_blank">Personal Site</a>
-                    <a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                </div>
-            </div>
+            <div class="footer-brand-block"><h3>Fundamental Needs Lab</h3><p>Research on deep poverty, food insecurity, homelessness, and class-based discrimination.</p></div>
+            <div><p class="footer-section-label">Navigate</p><div class="footer-links"><a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data Trackers</a></div></div>
+            <div><p class="footer-section-label">Connect</p><div class="footer-links"><a href="mailto:charles.crabtree@monash.edu">Email</a><a href="https://charlescrabtree.org" target="_blank">Personal Site</a><a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a></div></div>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-brand">
-                <span class="footer-logo">FNL</span>
-                <span class="footer-name">Fundamental Needs Lab</span>
-            </div>
-            <span>&copy; 2025 Fundamental Needs Lab</span>
-        </div>
+        <hr class="footer-divider"><div class="footer-bottom"><p>&copy; 2025 Fundamental Needs Lab</p></div>
     </div></footer>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

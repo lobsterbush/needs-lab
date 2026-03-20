@@ -7,11 +7,13 @@
     <meta name="description" content="Working papers and projects across four research areas at the Fundamental Needs Lab.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-    <nav class="nav"><div class="nav-inner">
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <nav class="nav nav--solid"><div class="nav-inner">
         <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
@@ -21,21 +23,34 @@
             <a href="advocacy.html" class="nav-link">Advocacy</a>
             <a href="data.html" class="nav-link">Data</a>
         </div>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div></nav>
     <div class="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
         <a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data</a>
     </div>
 
-    <main class="container">
-        <div class="prose">
-            <div class="section">
-                <h1 class="section-title">Research</h1>
-                <p>Our working papers and projects cover four broad research areas. We list below some of the papers and projects we're working on related to these areas. If you're interested in collaborating on these topics, <a href="mailto:charles.crabtree@monash.edu">please get in touch with us</a>!</p>
+    <!-- Page Hero -->
+    <div class="page-hero mc-container">
+        <div class="fade-in">
+            <p class="editorial-label" style="color: var(--terracotta);">Working Papers & Projects</p>
+            <h1 class="editorial-headline">Research</h1>
+            <hr class="editorial-rule-accent">
+        </div>
+    </div>
+
+    <!-- Research Content -->
+    <section class="section-light" style="padding-top: 2rem;">
+        <div class="mc-narrow">
+            <div class="fade-in">
+                <p class="editorial-body" style="margin-bottom: 1.5rem;">Our working papers and projects cover four broad research areas. We list below some of the papers and projects we're working on related to these areas. If you're interested in collaborating on these topics, <a href="mailto:charles.crabtree@monash.edu">please get in touch with us</a>!</p>
                 <p class="note">* = student author when the project started</p>
             </div>
 
-            <div class="section research-area">
+            <hr class="editorial-rule fade-in" style="margin: 3rem 0;">
+
+            <!-- Area 1 -->
+            <div class="research-area fade-in">
                 <h3>1. Measuring and addressing class-based discrimination (i.e. povertyism)</h3>
                 <ul class="paper-list">
                     <li>Volha Chykina, <strong>Charles Crabtree</strong>, and Kiyotero Tsutsui. "Measuring Rights and Inclusivity across American Universities." (Revise and resubmit at <em>Nature Human Behavior</em>.)</li>
@@ -53,7 +68,10 @@
                 </figure>
             </div>
 
-            <div class="section research-area">
+            <hr class="editorial-rule fade-in" style="margin: 3rem 0;">
+
+            <!-- Area 2 -->
+            <div class="research-area fade-in">
                 <h3>2. Improving how we measure public opinion of the poor and uneducated</h3>
                 <ul class="paper-list">
                     <li><strong>Charles Crabtree</strong>. "Extreme Poverty and Political Attitudes."</li>
@@ -66,7 +84,10 @@
                 </figure>
             </div>
 
-            <div class="section research-area">
+            <hr class="editorial-rule fade-in" style="margin: 3rem 0;">
+
+            <!-- Area 3 -->
+            <div class="research-area fade-in">
                 <h3>3. Understanding the attitudes and behaviors of homeless people</h3>
                 <ul class="paper-list">
                     <li><strong>Homeless Nation</strong> — a public and scholarly project designed to record, elevate, and learn from homeless voices. Goal: understand homeless attitudes and give a platform for their concerns. Approach: descriptive and inductive. Research design: semi-structured interviews of homeless folks across a wide range of countries (currently prepping for interviews in the U.S., Cuba, Argentina, Brazil, Lithuania, and Japan). The largest study of homeless folks ever.</li>
@@ -76,7 +97,10 @@
                 </figure>
             </div>
 
-            <div class="section research-area">
+            <hr class="editorial-rule fade-in" style="margin: 3rem 0;">
+
+            <!-- Area 4 -->
+            <div class="research-area fade-in">
                 <h3>4. Addressing #firstgen issues and representation in the academy</h3>
                 <ul class="paper-list">
                     <li><strong>Charles Crabtree</strong> and many others. "#firstgen in Political Science."</li>
@@ -86,38 +110,17 @@
                 </ul>
             </div>
         </div>
-    </main>
+    </section>
 
+    <!-- Footer -->
     <footer class="footer"><div class="footer-inner">
         <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="people.html">People</a>
-                    <a href="research.html">Research</a>
-                    <a href="publications.html">Publications</a>
-                    <a href="advocacy.html">Advocacy</a>
-                    <a href="data.html">Data Trackers</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="footer-links">
-                    <a href="mailto:charles.crabtree@monash.edu">Email</a>
-                    <a href="https://charlescrabtree.org" target="_blank">Personal Site</a>
-                    <a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                </div>
-            </div>
+            <div class="footer-brand-block"><h3>Fundamental Needs Lab</h3><p>Research on deep poverty, food insecurity, homelessness, and class-based discrimination.</p></div>
+            <div><p class="footer-section-label">Navigate</p><div class="footer-links"><a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data Trackers</a></div></div>
+            <div><p class="footer-section-label">Connect</p><div class="footer-links"><a href="mailto:charles.crabtree@monash.edu">Email</a><a href="https://charlescrabtree.org" target="_blank">Personal Site</a><a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a></div></div>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-brand">
-                <span class="footer-logo">FNL</span>
-                <span class="footer-name">Fundamental Needs Lab</span>
-            </div>
-            <span>&copy; 2025 Fundamental Needs Lab</span>
-        </div>
+        <hr class="footer-divider"><div class="footer-bottom"><p>&copy; 2025 Fundamental Needs Lab</p></div>
     </div></footer>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

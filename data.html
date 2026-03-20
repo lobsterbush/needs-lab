@@ -7,12 +7,14 @@
     <meta name="description" content="Interactive global data trackers for Gini coefficients, food insecurity, and homelessness.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-    <nav class="nav"><div class="nav-inner">
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <nav class="nav nav--solid"><div class="nav-inner">
         <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
@@ -22,18 +24,30 @@
             <a href="advocacy.html" class="nav-link">Advocacy</a>
             <a href="data.html" class="nav-link">Data</a>
         </div>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div></nav>
     <div class="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
         <a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data</a>
     </div>
 
-    <main class="container">
-        <div class="section">
-            <h1 class="section-title">Global Data Trackers</h1>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Interactive visualizations tracking fundamental needs indicators across countries. These trackers draw on open data from the World Bank, FAO, and OECD to provide a window into global inequality, food insecurity, and homelessness.</p>
+    <!-- Page Hero -->
+    <div class="page-hero mc-container">
+        <div class="fade-in">
+            <p class="editorial-label" style="color: var(--terracotta);">Interactive Visualizations</p>
+            <h1 class="editorial-headline">Global Data Trackers</h1>
+            <hr class="editorial-rule-accent">
+        </div>
+    </div>
 
-            <div class="tracker-tabs" role="tablist">
+    <!-- Trackers -->
+    <section class="section-light" style="padding-top: 2rem;">
+        <div class="mc-container">
+            <div class="fade-in">
+                <p class="tracker-explainer">Interactive visualizations tracking fundamental needs indicators across countries. These trackers draw on open data from the World Bank, FAO, and OECD to provide a window into global inequality, food insecurity, and homelessness.</p>
+            </div>
+
+            <div class="tracker-tabs fade-in" role="tablist">
                 <button class="tracker-tab active" role="tab" aria-selected="true" data-tab="gini">Gini Coefficient</button>
                 <button class="tracker-tab" role="tab" aria-selected="false" data-tab="food">Food Insecurity</button>
                 <button class="tracker-tab" role="tab" aria-selected="false" data-tab="homeless">Homelessness</button>
@@ -143,42 +157,21 @@
                 <p class="data-source">Source: <a href="https://www.oecd.org/housing/data/affordable-housing-database/" target="_blank">OECD Affordable Housing Database (HC3.1)</a>, compiled via <a href="https://ourworldindata.org/homelessness" target="_blank">Our World in Data</a></p>
             </div>
         </div>
-    </main>
+    </section>
 
+    <!-- Footer -->
     <footer class="footer"><div class="footer-inner">
         <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="people.html">People</a>
-                    <a href="research.html">Research</a>
-                    <a href="publications.html">Publications</a>
-                    <a href="advocacy.html">Advocacy</a>
-                    <a href="data.html">Data Trackers</a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="footer-links">
-                    <a href="mailto:charles.crabtree@monash.edu">Email</a>
-                    <a href="https://charlescrabtree.org" target="_blank">Personal Site</a>
-                    <a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                </div>
-            </div>
+            <div class="footer-brand-block"><h3>Fundamental Needs Lab</h3><p>Research on deep poverty, food insecurity, homelessness, and class-based discrimination.</p></div>
+            <div><p class="footer-section-label">Navigate</p><div class="footer-links"><a href="index.html">Home</a><a href="people.html">People</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="advocacy.html">Advocacy</a><a href="data.html">Data Trackers</a></div></div>
+            <div><p class="footer-section-label">Connect</p><div class="footer-links"><a href="mailto:charles.crabtree@monash.edu">Email</a><a href="https://charlescrabtree.org" target="_blank">Personal Site</a><a href="https://scholar.google.com/citations?user=FJHX9LAAAAAJ&hl=en" target="_blank">Google Scholar</a></div></div>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-brand">
-                <span class="footer-logo">FNL</span>
-                <span class="footer-name">Fundamental Needs Lab</span>
-            </div>
-            <span>&copy; 2025 Fundamental Needs Lab</span>
-        </div>
+        <hr class="footer-divider"><div class="footer-bottom"><p>&copy; 2025 Fundamental Needs Lab</p></div>
     </div></footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-    <script src="script.js?v=3"></script>
-    <script src="data.js?v=3"></script>
+    <script src="script.js?v=4"></script>
+    <script src="data.js?v=4"></script>
 </body>
 </html>
