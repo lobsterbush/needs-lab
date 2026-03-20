@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Trackers — Fundamental Needs Lab</title>
     <meta name="description" content="Interactive global data trackers for Gini coefficients, food insecurity, and homelessness.">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
     <div class="scroll-progress"></div>
     <div class="grain-overlay" aria-hidden="true"></div>
 
     <nav class="nav nav--solid"><div class="nav-inner">
-        <a href="index.html" class="nav-logo">Fundamental Needs Lab</a>
+        <a href="index.html" class="nav-logo"><svg class="nav-logo-mark" width="22" height="22" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22 L20 6 L36 22"/><line x1="12" y1="22" x2="12" y2="34"/><line x1="28" y1="22" x2="28" y2="34"/><line x1="6" y1="34" x2="34" y2="34"/></svg> Fundamental Needs Lab</a>
         <div class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
             <a href="people.html" class="nav-link">People</a>
@@ -35,7 +36,7 @@
     <!-- Page Hero -->
     <div class="page-hero mc-container">
         <div class="fade-in">
-            <p class="editorial-label" style="color: var(--terracotta);">Interactive Visualizations</p>
+            <p class="editorial-label" style="color: var(--accent);">Interactive Visualizations</p>
             <h1 class="editorial-headline">Global Data Trackers</h1>
             <hr class="editorial-rule-accent">
         </div>
@@ -146,7 +147,7 @@
                 <p class="tracker-explainer">Homelessness data is among the hardest to collect and compare across countries. There is no internationally agreed definition of homelessness, and countries differ widely in what they count. The Institute of Global Homelessness estimates that at least 330 million people face absolute homelessness — lacking any type of shelter. UN-Habitat reports that 1.6 to 2.8 billion people worldwide lack adequate housing.</p>
 
                 <!-- Global Estimates -->
-                <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 1.5rem;">Global Estimates (Absolute Homeless Populations)</p>
+                <p class="editorial-label" style="color: var(--accent); margin-bottom: 1.5rem;">Global Estimates (Absolute Homeless Populations)</p>
                 <p class="tracker-explainer" style="margin-bottom: 1rem;">These estimates draw on a variety of sources including UN agencies, national censuses, and research organizations. Numbers include internally displaced persons in conflict zones. All figures are approximate and likely undercounts.</p>
 
                 <div id="global-homeless-bars" class="bar-chart"></div>
@@ -166,7 +167,7 @@
                 <hr class="editorial-rule" style="margin: 3rem 0;">
 
                 <!-- OECD Data -->
-                <p class="editorial-label" style="color: var(--terracotta); margin-bottom: 1.5rem;">OECD Countries (Per 100,000 Population)</p>
+                <p class="editorial-label" style="color: var(--accent); margin-bottom: 1.5rem;">OECD Countries (Per 100,000 Population)</p>
                 <p class="tracker-explainer" style="margin-bottom: 1rem;">The data below covers approximately 40 mostly OECD countries. These numbers appear dramatically lower than the global estimates above because they use narrow national definitions and only cover wealthy nations.</p>
 
                 <div id="homeless-bars" class="bar-chart">
@@ -213,7 +214,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-    <script src="script.js?v=4"></script>
-    <script src="data.js?v=4"></script>
+    <script src="script.js?v=5"></script>
+    <script src="data.js?v=5"></script>
 </body>
 </html>
