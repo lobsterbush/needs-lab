@@ -20,7 +20,7 @@
        Scroll-aware navigation
        ======================================== */
     const nav = document.querySelector('.nav');
-    const isHomepage = document.querySelector('.hero-dark') !== null;
+    const isHomepage = document.querySelector('.hero-photo') !== null;
 
     function updateNav() {
         if (!nav) return;
@@ -71,18 +71,50 @@
     });
 
     /* ========================================
-       Hero — Scroll Fade only (no mouse parallax to avoid conflicts)
+       Hero — Photo Slideshow + Scroll Fade
        ======================================== */
-    const heroDark = document.querySelector('.hero-dark');
-    const heroContainer = heroDark ? heroDark.querySelector('.mc-container') : null;
+    const heroPhoto = document.querySelector('.hero-photo');
+    const heroContainer = heroPhoto ? heroPhoto.querySelector('.mc-container') : null;
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.hero-dot');
 
-    if (heroDark && heroContainer && !prefersReducedMotion) {
+    if (heroSlides.length > 1) {
+        let currentSlide = 0;
+        const slideCount = heroSlides.length;
+
+        function goToSlide(idx) {
+            heroSlides[currentSlide].classList.remove('active');
+            heroDots[currentSlide].classList.remove('active');
+            currentSlide = idx;
+            heroSlides[currentSlide].classList.add('active');
+            heroDots[currentSlide].classList.add('active');
+        }
+
+        /* Auto-advance every 6 seconds */
+        let slideTimer = setInterval(() => {
+            goToSlide((currentSlide + 1) % slideCount);
+        }, 6000);
+
+        /* Click indicators */
+        heroDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                clearInterval(slideTimer);
+                goToSlide(parseInt(dot.dataset.slide));
+                slideTimer = setInterval(() => {
+                    goToSlide((currentSlide + 1) % slideCount);
+                }, 6000);
+            });
+        });
+    }
+
+    /* Scroll fade on hero */
+    if (heroPhoto && heroContainer && !prefersReducedMotion) {
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const heroH = heroDark.offsetHeight;
+            const heroH = heroPhoto.offsetHeight;
             if (scrollY < heroH) {
                 const p = scrollY / heroH;
-                heroContainer.style.opacity = Math.max(0, 1 - p * 1.2);
+                heroContainer.style.opacity = Math.max(0, 1 - p * 1.3);
             }
         }, { passive: true });
     }
