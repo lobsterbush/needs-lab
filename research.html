@@ -88,9 +88,46 @@
                     <li><strong>Charles Crabtree</strong> and John B. Holbein. "LLMs Should Not be Used to Create Synthetic Data for Poor Folks."</li>
                     <li><strong>Charles Crabtree</strong>, John B. Holbein, and Bart Bonikowski. "Attention checks measure more than attention: Comparing class bias across survey quality indicators."</li>
                 </ul>
-                <figure class="research-figure">
-                    <img src="images/research-screened.png" alt="Dropping respondents based on attention checks skews survey samples">
-                    <figcaption>Dropping respondents based on attention checks skews survey samples to more educated and more wealthy respondents</figcaption>
+                <figure class="research-figure" style="padding: 0;">
+                    <div style="background: #fff; border-radius: 8px; padding: 2rem; box-shadow: 0 4px 24px rgba(13,17,23,0.08), 0 1px 4px rgba(13,17,23,0.04);">
+                        <div style="display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;">
+                            <!-- Education panel -->
+                            <div style="flex: 1; min-width: 200px; max-width: 280px;">
+                                <p style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 1rem; text-align: center;">Education Level</p>
+                                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 1.5rem; height: 160px;">
+                                    <div style="text-align: center;">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                                            <div style="width: 48px; height: 140px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 120px; background: var(--accent); border-radius: 3px 3px 0 0;"></div></div>
+                                        </div>
+                                        <p style="font-size: 0.65rem; color: var(--warm-gray); margin-top: 0.5rem;">No degree</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                                            <div style="width: 48px; height: 150px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 148px; background: var(--accent); border-radius: 3px 3px 0 0;"></div></div>
+                                        </div>
+                                        <p style="font-size: 0.65rem; color: var(--warm-gray); margin-top: 0.5rem;">Degree+</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Income panel -->
+                            <div style="flex: 1; min-width: 260px; max-width: 360px;">
+                                <p style="font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 1rem; text-align: center;">Income Quintile</p>
+                                <div style="display: flex; align-items: flex-end; justify-content: center; gap: 0.75rem; height: 160px;">
+                                    <div style="text-align: center;"><div style="width: 36px; height: 150px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 95px; background: var(--amber); border-radius: 3px 3px 0 0;"></div></div><p style="font-size: 0.6rem; color: var(--warm-gray); margin-top: 0.4rem;">Q1</p></div>
+                                    <div style="text-align: center;"><div style="width: 36px; height: 125px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 100px; background: var(--amber); border-radius: 3px 3px 0 0;"></div></div><p style="font-size: 0.6rem; color: var(--warm-gray); margin-top: 0.4rem;">Q2</p></div>
+                                    <div style="text-align: center;"><div style="width: 36px; height: 105px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 95px; background: var(--amber); border-radius: 3px 3px 0 0;"></div></div><p style="font-size: 0.6rem; color: var(--warm-gray); margin-top: 0.4rem;">Q3</p></div>
+                                    <div style="text-align: center;"><div style="width: 36px; height: 90px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 82px; background: var(--amber); border-radius: 3px 3px 0 0;"></div></div><p style="font-size: 0.6rem; color: var(--warm-gray); margin-top: 0.4rem;">Q4</p></div>
+                                    <div style="text-align: center;"><div style="width: 36px; height: 80px; background: #e8e4de; border-radius: 3px 3px 0 0; position: relative;"><div style="position: absolute; bottom: 0; width: 100%; height: 75px; background: var(--amber); border-radius: 3px 3px 0 0;"></div></div><p style="font-size: 0.6rem; color: var(--warm-gray); margin-top: 0.4rem;">Q5</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray-light);">
+                            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--accent); vertical-align: middle; margin-right: 4px;"></span> Pass attention check
+                            &nbsp;&nbsp;
+                            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #e8e4de; vertical-align: middle; margin-right: 4px;"></span> All observations
+                        </p>
+                    </div>
+                    <figcaption>Dropping respondents who fail attention checks disproportionately screens out lower-education and lower-income respondents</figcaption>
                 </figure>
             </div>
 
