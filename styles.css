@@ -902,11 +902,22 @@ img { max-width: 100%; height: auto; }
 .map-container {
     width: 100%;
     height: 450px;
-    border-radius: 2px;
-    border: 1px solid var(--border);
+    border-radius: 8px;
+    border: none;
     margin-bottom: 2rem;
     background: var(--cream);
     overflow: hidden;
+    box-shadow: 0 4px 24px rgba(13, 17, 23, 0.08), 0 1px 4px rgba(13, 17, 23, 0.04);
+}
+
+.map-legend {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1;
 }
 
 .year-slider-wrap { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }

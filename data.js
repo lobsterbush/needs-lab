@@ -78,27 +78,51 @@
         return Object.values(byCountry);
     }
 
-    /* ===== Color scales ===== */
+    /* ===== Color scales (sequential, site-palette aligned) ===== */
+    const GINI_SCALE = [
+        { max: 25, color: '#d4e6f1', label: '< 25' },
+        { max: 30, color: '#a9cce3', label: '25–30' },
+        { max: 35, color: '#7fb3d3', label: '30–35' },
+        { max: 40, color: '#d4973b', label: '35–40' },
+        { max: 45, color: '#c17a28', label: '40–45' },
+        { max: 50, color: '#a35d1f', label: '45–50' },
+        { max: Infinity, color: '#7a3a10', label: '50+' }
+    ];
     function giniColor(v) {
-        if (v == null) return '#e5dfd6';
-        if (v < 25) return '#d4edda';
-        if (v < 30) return '#a8d5a2';
-        if (v < 35) return '#ffeaa7';
-        if (v < 40) return '#fdcb6e';
-        if (v < 45) return '#f39c12';
-        if (v < 50) return '#e17055';
-        return '#d63031';
+        if (v == null) return '#e8e4de';
+        for (const s of GINI_SCALE) if (v < s.max) return s.color;
+        return GINI_SCALE[GINI_SCALE.length - 1].color;
     }
 
+    const FOOD_SCALE = [
+        { max: 10, color: '#d4e6f1', label: '< 10%' },
+        { max: 20, color: '#a9cce3', label: '10–20%' },
+        { max: 30, color: '#7fb3d3', label: '20–30%' },
+        { max: 40, color: '#d4973b', label: '30–40%' },
+        { max: 50, color: '#c17a28', label: '40–50%' },
+        { max: 60, color: '#a35d1f', label: '50–60%' },
+        { max: Infinity, color: '#7a3a10', label: '60%+' }
+    ];
     function foodColor(v) {
-        if (v == null) return '#e5dfd6';
-        if (v < 10) return '#d4edda';
-        if (v < 20) return '#a8d5a2';
-        if (v < 30) return '#ffeaa7';
-        if (v < 40) return '#fdcb6e';
-        if (v < 50) return '#f39c12';
-        if (v < 60) return '#e17055';
-        return '#d63031';
+        if (v == null) return '#e8e4de';
+        for (const s of FOOD_SCALE) if (v < s.max) return s.color;
+        return FOOD_SCALE[FOOD_SCALE.length - 1].color;
+    }
+
+    /* ===== Legend ===== */
+    function addLegend(map, scale, title) {
+        const legend = L.control({ position: 'bottomleft' });
+        legend.onAdd = function () {
+            const div = L.DomUtil.create('div', 'map-legend');
+            let html = `<div style="font-family:var(--font-mono,'SF Mono',monospace);font-size:0.55rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#5a5a6a;margin-bottom:6px;">${title}</div>`;
+            for (const s of scale) {
+                html += `<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><span style="width:14px;height:10px;border-radius:2px;background:${s.color};display:inline-block;"></span><span style="font-size:0.6rem;color:#5a5a6a;">${s.label}</span></div>`;
+            }
+            html += `<div style="display:flex;align-items:center;gap:6px;margin-top:2px;"><span style="width:14px;height:10px;border-radius:2px;background:#e8e4de;display:inline-block;"></span><span style="font-size:0.6rem;color:#7a7a8e;">No data</span></div>`;
+            div.innerHTML = html;
+            return div;
+        };
+        legend.addTo(map);
     }
 
     /* ===== Create Leaflet map ===== */
@@ -107,16 +131,22 @@
         const northEast = L.latLng(85, 180);
         const bounds = L.latLngBounds(southWest, northEast);
 
+        const el = document.getElementById(containerId);
+        if (el) el.innerHTML = ''; /* Clear loading text before init */
+
         const map = L.map(containerId, {
-            center: [25, 10],
+            center: [20, 15],
             zoom: 2,
             minZoom: 2,
             maxZoom: 6,
-            scrollWheelZoom: true,
+            scrollWheelZoom: false, /* Prevent accidental scroll-zoom */
             worldCopyJump: false,
             maxBounds: bounds,
-            maxBoundsViscosity: 1.0
+            maxBoundsViscosity: 1.0,
+            zoomControl: true,
+            attributionControl: true
         });
+
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
             subdomains: 'abcd',
@@ -124,6 +154,11 @@
             noWrap: true,
             bounds: bounds
         }).addTo(map);
+
+        /* Aggressively fix map sizing */
+        requestAnimationFrame(() => map.invalidateSize());
+        [100, 300, 600, 1000].forEach(d => setTimeout(() => map.invalidateSize(), d));
+
         return map;
     }
 
@@ -266,6 +301,7 @@
         const giniMapEl = document.getElementById('gini-map');
         if (giniMapEl) {
             state.gini.map = createMap('gini-map');
+            addLegend(state.gini.map, GINI_SCALE, 'Gini Index');
             try {
                 state.gini.raw = await fetchWB('SI.POV.GINI', '2000:2024');
                 const year = parseInt(document.getElementById('gini-year').value);
@@ -290,6 +326,7 @@
         const foodMapEl = document.getElementById('food-map');
         if (foodMapEl) {
             state.food.map = createMap('food-map');
+            addLegend(state.food.map, FOOD_SCALE, 'Food Insecurity');
             try {
                 state.food.raw = await fetchWB('SN.ITK.MSFI.ZS', '2014:2024');
                 const year = parseInt(document.getElementById('food-year').value);
