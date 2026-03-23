@@ -114,7 +114,7 @@
         const legend = L.control({ position: 'bottomleft' });
         legend.onAdd = function () {
             const div = L.DomUtil.create('div', 'map-legend');
-            let html = `<div style="font-family:var(--font-mono,'SF Mono',monospace);font-size:0.55rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#5a5a6a;margin-bottom:6px;">${title}</div>`;
+let html = `<div style="font-family:var(--font-sans,system-ui,sans-serif);font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#6b7280;margin-bottom:6px;">${title}</div>`;
             for (const s of scale) {
                 html += `<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><span style="width:14px;height:10px;border-radius:2px;background:${s.color};display:inline-block;"></span><span style="font-size:0.6rem;color:#5a5a6a;">${s.label}</span></div>`;
             }
@@ -402,7 +402,7 @@
                     })).sort((a, b) => b.value - a.value), 'global-homeless-search');
                 }
             } catch (e) {
-                homelessBarsEl.innerHTML = '<p style="color:var(--warm-gray-light);">Could not load homelessness data.</p>';
+                homelessBarsEl.innerHTML = '<p style="color:var(--text-tertiary);">Could not load homelessness data.</p>';
                 console.error('Homelessness data error:', e);
             }
         }

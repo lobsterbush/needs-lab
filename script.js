@@ -1,20 +1,6 @@
-/* Fundamental Needs Lab — interactive, experiential site */
+/* Fundamental Needs Lab */
 (function () {
     'use strict';
-
-    const isMobile = window.innerWidth < 768;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ========================================
-       Scroll Progress Bar
-       ======================================== */
-    const progressBar = document.querySelector('.scroll-progress');
-    if (progressBar) {
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement.scrollHeight - window.innerHeight;
-            progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
-        }, { passive: true });
-    }
 
     /* ========================================
        Scroll-aware navigation
@@ -107,20 +93,8 @@
         });
     }
 
-    /* Scroll fade on hero */
-    if (heroPhoto && heroContainer && !prefersReducedMotion) {
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const heroH = heroPhoto.offsetHeight;
-            if (scrollY < heroH) {
-                const p = scrollY / heroH;
-                heroContainer.style.opacity = Math.max(0, 1 - p * 1.3);
-            }
-        }, { passive: true });
-    }
-
     /* ========================================
-       Scroll-triggered fade-in (spring bounce)
+       Scroll-triggered fade-in
        ======================================== */
     const fadeElements = document.querySelectorAll('.fade-in');
     if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
@@ -140,10 +114,8 @@
         fadeElements.forEach(el => el.classList.add('visible'));
     }
 
-    /* Word reveal removed — was causing transform conflicts with hero parallax */
-
     /* ========================================
-       Animated Counters (stats count up)
+       Animated Counters
        ======================================== */
     document.querySelectorAll('[data-counter]').forEach(el => {
         const target = el.getAttribute('data-counter');
@@ -168,7 +140,6 @@
         function tick(now) {
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            /* Ease-out bounce */
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = eased * target;
 
@@ -186,91 +157,6 @@
         }
         requestAnimationFrame(tick);
     }
-
-    /* ========================================
-       Card Tilt on Hover (3D perspective)
-       ======================================== */
-    if (!isMobile && !prefersReducedMotion) {
-        document.querySelectorAll('[data-tilt]').forEach(card => {
-            let tiltX = 0, tiltY = 0, targetX = 0, targetY = 0;
-            let tiltRAF;
-
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width;
-                const y = (e.clientY - rect.top) / rect.height;
-                targetX = (y - 0.5) * -8;
-                targetY = (x - 0.5) * 8;
-            });
-
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'none';
-                function animate() {
-                    tiltX += (targetX - tiltX) * 0.1;
-                    tiltY += (targetY - tiltY) * 0.1;
-                    card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
-                    tiltRAF = requestAnimationFrame(animate);
-                }
-                animate();
-            });
-
-            card.addEventListener('mouseleave', () => {
-                cancelAnimationFrame(tiltRAF);
-                card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-                tiltX = 0; tiltY = 0; targetX = 0; targetY = 0;
-            });
-        });
-    }
-
-    /* ========================================
-       Magnetic Buttons (pull toward cursor)
-       ======================================== */
-    if (!isMobile && !prefersReducedMotion) {
-        document.querySelectorAll('[data-magnetic]').forEach(btn => {
-            let magX = 0, magY = 0, magRAF;
-            const strength = 0.3;
-
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                magX = x * strength;
-                magY = y * strength;
-            });
-
-            btn.addEventListener('mouseenter', () => {
-                function animate() {
-                    btn.style.transform = `translate(${magX}px, ${magY}px) scale(1.03)`;
-                    magRAF = requestAnimationFrame(animate);
-                }
-                animate();
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                cancelAnimationFrame(magRAF);
-                magX = 0; magY = 0;
-                btn.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                btn.style.transform = 'translate(0, 0) scale(1)';
-                setTimeout(() => { btn.style.transition = ''; }, 500);
-            });
-        });
-    }
-
-    /* People grid stagger handled via CSS fade-in classes */
-
-    /* ========================================
-       Research Figure Hover Zoom
-       ======================================== */
-    document.querySelectorAll('.research-figure img').forEach(img => {
-        img.addEventListener('mouseenter', () => {
-            img.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            img.style.transform = 'scale(1.02)';
-        });
-        img.addEventListener('mouseleave', () => {
-            img.style.transform = 'scale(1)';
-        });
-    });
 
     /* ========================================
        Data tracker tab switching
